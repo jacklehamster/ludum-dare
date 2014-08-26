@@ -21,6 +21,10 @@
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
 	import flash.media.SoundTransform;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLLoader;
+	import by.blooddy.crypto.MD5;
+	import flash.net.URLRequest;
 	
 	
 	public class ConnectedWorldGame extends MovieClip implements IDelegate {
@@ -28,6 +32,9 @@
 		private var introMusic:Sound = new IntroMusic();
 		private var cw:ConnectedBattlefield;
 		private var canvas:Sprite = new Sprite();
+		private var selectSound:Sound = new SelectSound();
+		private var placeSound:Sound = new PlaceSound();
+		private var cancelSound:Sound = new CancelSound();
 		
 		private function getUserId():String {
 			return "dunki"+Math.random();
@@ -38,6 +45,7 @@
 		private var moneyCounter:Number = 0;
 		private var scale:Number = .3;
 		
+		private var score:int = 0;
 		
 		private function updateGold():void {
 			refresh(cw);
@@ -82,7 +90,7 @@
 			
 			cw = new ConnectedBattlefield(canvas,user_id);
 			cw.delegate = this;
-			var point:Point = new Point(Math.random()*1000,Math.random()*1000);
+			var point:Point = new Point(Math.random()*2000,Math.random()*2000);
 			cw.setScroll(point.x,point.y);
 			
 			cw.createUnit(user_id+(count++),"slimehouse",new Point(point.x,point.y));
@@ -100,12 +108,22 @@
 			//Mozart.instance.play(123);
 			refresh(cw);
 				
+			ui.cancelBar.addEventListener(MouseEvent.MOUSE_DOWN,
+				function(e:MouseEvent):void {
+					if(cw.cursor) {
+						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
+					}
+				});
+				
 			ui.water.addEventListener(MouseEvent.MOUSE_DOWN,
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
 						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
 					}
 					else if(gold>=cost(ui.water)) {
+						selectSound.play(0,0,new SoundTransform(.2));
 						ui.selector.visible =true;
 						ui.selector.x = ui.water.x;
 						ui.selector.y = ui.water.y;
@@ -121,8 +139,10 @@
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
 						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
 					}
 					else if(gold>=cost(ui.house)) {
+						selectSound.play(0,0,new SoundTransform(.2));
 						ui.selector.visible =true;
 						ui.selector.x = ui.house.x;
 						ui.selector.y = ui.house.y;
@@ -137,8 +157,10 @@
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
 						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
 					}
 					else if(gold>=cost(ui.tree)) {
+						selectSound.play(0,0,new SoundTransform(.2));
 						ui.selector.visible =true;
 						ui.selector.x = ui.tree.x;
 						ui.selector.y = ui.tree.y;
@@ -153,8 +175,10 @@
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
 						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
 					}
 					else if(gold>=cost(ui.nest)) {
+						selectSound.play(0,0,new SoundTransform(.2));
 						ui.selector.visible =true;
 						ui.selector.x = ui.nest.x;
 						ui.selector.y = ui.nest.y;
@@ -169,8 +193,10 @@
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
 						clearSelection();
+						cancelSound.play(0,0,new SoundTransform(.2));
 					}
 					else if(gold>=cost(ui.monument)) {
+						selectSound.play();
 						//launchSelector();
 						
 						ui.selector.visible =true;
@@ -281,8 +307,18 @@
 		}
 		
 		private function onMouseDown(e:MouseEvent):void {
-			if(cw.createFromCursor()) {
-				pendingMoney = 0;
+			if(cw.cursor) {
+				if(cw.createFromCursor()) {
+					placeSound.play(0,0,new SoundTransform(.2,canvas.mouseX/200));
+					pendingMoney = 0;
+					var smoke:Smoke = new Smoke();
+					smoke.x = e.stageX;
+					smoke.y = e.stageY;
+					addChild(smoke);
+				}
+				else {
+					cancelSound.play(0,0,new SoundTransform(.2));
+				}
 			}
 			clearSelection();
 		}
@@ -299,6 +335,10 @@
 		public function refresh(cw:ConnectedBattlefield):void {
 			ui.pop.text = cw.popCount + "";
 			//ui.infospace.text = [Math.round(cw.scroll.x),Math.round(cw.scroll.y)].join(",");
+			if(score<cw.popCount) {
+				score = cw.popCount;
+				postScore(score);
+			}
 			updateUI();
 			
 		}
@@ -314,6 +354,32 @@
 				: title + ", a great wonder has been built in a faraway land";
 			ui.wonderText.visible = true;
 			setTimeout(function():void {ui.wonderText.visible = false},10000);
+		}
+		
+		
+		public function postScore(value:Number):void {
+			var username:String = root.loaderInfo.parameters.gjapi_username;
+			var token:String = root.loaderInfo.parameters.gjapi_token;
+			if(username) {
+				var url:String = "http://gamejolt.com/api/game/v1/scores/add/?game_id="+"33181";
+				url += "&score="+value;
+				url += "&sort="+value;
+				url += "&time="+new Date().time;
+				url += "&username="+ username;
+				url += "&user_token="+ token;
+				url += "&format=json";
+				url += "&time="+new Date().time;
+				url += "&signature="+MD5.hash(url + "0973822742d4f5c51e3cc9064afe1dd5");
+				var urlloader:URLLoader = new URLLoader();
+				urlloader.addEventListener(IOErrorEvent.IO_ERROR,
+					function(e:IOErrorEvent):void {
+						trace(e);
+					});
+				urlloader.addEventListener(Event.COMPLETE,
+				   function(e:Event):void {
+				   });
+				urlloader.load(new URLRequest(url));
+			}
 		}
 	}
 	
