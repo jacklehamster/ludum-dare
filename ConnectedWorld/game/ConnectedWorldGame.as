@@ -25,6 +25,7 @@
 	import flash.net.URLLoader;
 	import by.blooddy.crypto.MD5;
 	import flash.net.URLRequest;
+	import com.newgrounds.API;
 	
 	
 	public class ConnectedWorldGame extends MovieClip implements IDelegate {
@@ -65,6 +66,10 @@
 		}
 		
 		public function ConnectedWorldGame() {
+			API.connect(root,"38281:oywmHs2g","QaTRvuCHRIkPQp0AwEtMukvnUO9v40XT");
+		}
+		
+		private function playIntro():void {
 			var channel:SoundChannel = introMusic.play(0,int.MAX_VALUE,null);
 			stage.addEventListener(MouseEvent.CLICK,
 				function(e:MouseEvent):void {
@@ -108,6 +113,12 @@
 			//Mozart.instance.play(123);
 			refresh(cw);
 				
+				
+				
+			cw.addEventListener("mateWithOtherPlayer",
+				function(e:Event):void {
+					API.unlockMedal("Connected Worlds");
+				});
 			ui.cancelBar.addEventListener(MouseEvent.MOUSE_DOWN,
 				function(e:MouseEvent):void {
 					if(cw.cursor) {
@@ -215,6 +226,7 @@
 					scale += (2 / Math.pow(cw.popCount,.2) - scale)/50;
 					canvas.scaleX = canvas.scaleY = scale;
 				});
+			ui.infospace.visible = false;
 		}
 		
 		public function cost(button):int {
@@ -337,6 +349,14 @@
 			//ui.infospace.text = [Math.round(cw.scroll.x),Math.round(cw.scroll.y)].join(",");
 			if(score<cw.popCount) {
 				score = cw.popCount;
+				if(score>=10) {
+					if(API.isNewgrounds)
+						API.unlockMedal("Pop 10");
+				}
+				if(score>=100) {
+					if(API.isNewgrounds)
+						API.unlockMedal("Pop 100");
+				}
 				postScore(score);
 			}
 			updateUI();
@@ -349,6 +369,10 @@
 		}
 		
 		public function wonder(title:String,mine:Boolean):void {
+			if(mine) {
+				if(API.isNewgrounds)
+					API.unlockMedal("Pyramid Scheme");
+			}
 			ui.wonderText.text = 
 				mine ? "You have built a great Wonder of the World: " + title
 				: title + ", a great wonder has been built in a faraway land";
@@ -358,6 +382,7 @@
 		
 		
 		public function postScore(value:Number):void {
+			//	gamejolt
 			var username:String = root.loaderInfo.parameters.gjapi_username;
 			var token:String = root.loaderInfo.parameters.gjapi_token;
 			if(username) {
@@ -379,6 +404,11 @@
 				   function(e:Event):void {
 				   });
 				urlloader.load(new URLRequest(url));
+			}
+			
+			//	newgrounds
+			if(API.isNewgrounds) {
+				API.postScore("Highest Population",value);
 			}
 		}
 	}

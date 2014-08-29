@@ -5,6 +5,7 @@ package com.dobuki.unittype
 	import com.dobuki.World;
 	
 	import flash.display.MovieClip;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.media.Sound;
 	import flash.media.SoundTransform;
@@ -110,6 +111,7 @@ package com.dobuki.unittype
 							case MATING:
 								var nest:Unit = world.findUnit(unit.data.nest);
 								if(nest.state==HouseType.FULL && world.clock-nest.data.started>10000) {
+									
 									doneReproducing(nest);
 									doneMating(world.findUnit(unit.data.mate),PREGNANT);
 									doneMating(unit,PREGNANT);
@@ -191,6 +193,9 @@ package com.dobuki.unittype
 						unit.state = MATING;
 						unit.data.nest = closestNest.id;
 						closestNest.data.started = world.clock;
+						
+						world.broadcast(null,world.user_id,"interMate",{user1:unit.user,user2:mate.user});
+						
 					}
 					closestNest.broadcastUnit();
 				}

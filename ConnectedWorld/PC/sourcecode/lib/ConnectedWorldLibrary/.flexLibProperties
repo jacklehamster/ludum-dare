@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.dobuki.ConnectedWorld"/>
+    <classEntry path="com.dobuki.Mozart"/>
+    <classEntry path="com.dobuki.World"/>
+    <classEntry path="com.dobuki.ConnectedBattlefield"/>
+    <classEntry path="com.dobuki.ConnectedField"/>
+    <classEntry path="com.dobuki.Unit"/>
+    <classEntry path="com.dobuki.collision.Collider"/>
+    <classEntry path="com.dobuki.collision.Collision"/>
+    <classEntry path="com.dobuki.collision.ICollidable"/>
+    <classEntry path="com.dobuki.unittype.UnitType"/>
+    <classEntry path="com.dobuki.utils.Size"/>
+    <classEntry path="com.dobuki.unittype.SlimeType"/>
+    <classEntry path="com.dobuki.unittype.TreeType"/>
+    <classEntry path="com.dobuki.unittype.BuildingType"/>
+    <classEntry path="com.dobuki.unittype.SlimeHouseType"/>
+    <classEntry path="com.dobuki.IDelegate"/>
+    <classEntry path="com.dobuki.unittype.HouseType"/>
+    <classEntry path="com.dobuki.unittype.MonumentType"/>
+    <classEntry path="com.dobuki.unittype.WaterType"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

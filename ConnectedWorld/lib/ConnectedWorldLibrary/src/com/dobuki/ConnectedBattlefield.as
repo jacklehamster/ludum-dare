@@ -5,6 +5,7 @@ package com.dobuki
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.display.Stage;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.media.Sound;
@@ -265,6 +266,10 @@ package com.dobuki
 				case "wonder":
 					if(delegate)
 						delegate.wonder(data.title,data.user==user_id);
+					break;
+				case "interMate":
+					if(data.user1==user_id || data.user2==user_id)
+						dispatchEvent(new Event("mateWithOtherPlayer"));
 					break;
 				default:
 					super.onAction(id,action,data,user,world);

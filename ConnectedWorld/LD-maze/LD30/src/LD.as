@@ -154,6 +154,9 @@ package
 								break;
 							}
 						}
+						
+						var twiterDesc:String = data.split('" name="twitter:description"')[0].split("<meta content=").pop();
+						
 	//					trace(JSON.stringify(lnks,null,'\t'));
 	//					trace(links);
 						entry.large = largeImg;
