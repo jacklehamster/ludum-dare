@@ -1,0 +1,669 @@
+{
+	"map": {
+		"3,8": {
+			"rwall": {
+				"spot": {
+					"y": 8,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_23",
+				"type": "rwall"
+			}
+		},
+		"-7,10": {
+			"floor": {
+				"spot": {
+					"y": 10,
+					"x": -7
+				},
+				"image": "woodtile.png",
+				"id": "xid_47",
+				"type": "floor"
+			}
+		},
+		"-3,10": {
+			"floor": {
+				"spot": {
+					"y": 10,
+					"x": -3
+				},
+				"image": "woodtile.png",
+				"id": "xid_49",
+				"type": "floor"
+			}
+		},
+		"-7,9": {
+			"floor": {
+				"spot": {
+					"y": 9,
+					"x": -7
+				},
+				"image": "woodtile.png",
+				"id": "xid_30",
+				"type": "floor"
+			}
+		},
+		"2,7": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-4,5": {
+			"floor": {
+				"spot": {
+					"y": 5,
+					"x": -4
+				},
+				"image": "metaltile.png",
+				"id": "exit",
+				"type": "floor",
+				"destination": {
+					"map": "world.txt",
+					"location": "entrance"
+				}
+			}
+		},
+		"-4,6": {
+			"floor": {
+				"spot": {
+					"y": 6,
+					"x": -4
+				},
+				"image": "metaltile.png",
+				"id": "xid_8",
+				"type": "floor"
+			},
+			"lwall": {
+				"interact": "open",
+				"type": "lwall",
+				"className": "Door",
+				"spot": {
+					"y": 6,
+					"x": -4
+				},
+				"id": "xid_13",
+				"interactName": "open",
+				"object": "door",
+				"hotspot": {
+					"x": 0,
+					"y": -0.5
+				},
+                               "range": 1
+			}
+		},
+		"-3,9": {
+			"floor": {
+				"spot": {
+					"y": 9,
+					"x": -3
+				},
+				"image": "woodtile.png",
+				"id": "xid_48",
+				"type": "floor"
+			}
+		},
+		"-2,6": {
+			"floor": {
+				"spot": {
+					"y": 6,
+					"x": -2
+				},
+				"image": "metaltile.png",
+				"id": "xid_5",
+				"type": "floor"
+			},
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": -2
+				},
+				"image": "glasswall.png",
+				"id": "xid_11",
+				"type": "lwall"
+			}
+		},
+		"-3,6": {
+			"floor": {
+				"spot": {
+					"y": 6,
+					"x": -3
+				},
+				"image": "metaltile.png",
+				"id": "xid_3",
+				"type": "floor"
+			},
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": -3
+				},
+				"image": "glasswall.png",
+				"id": "xid_12",
+				"type": "lwall"
+			}
+		},
+		"3,10": {
+			"rwall": {
+				"spot": {
+					"y": 10,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_25",
+				"type": "rwall"
+			}
+		},
+		"-5,9": {
+			"floor": {
+				"spot": {
+					"y": 9,
+					"x": -5
+				},
+				"image": "woodtile.png",
+				"id": "xid_28",
+				"type": "floor"
+			}
+		},
+		"-6,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -6
+				},
+				"image": "woodtile.png",
+				"id": "xid_32",
+				"type": "floor"
+			},
+			"objects": {
+				"Zomba": {
+					"name": "Zomba",
+					"follow": "Wanda",
+					"className": "Zomba",
+					"character": 1,
+					"spot": {
+						"y": 8,
+						"x": -6
+					},
+					"id": "Zomba",
+					"team": 1,
+					"icon": [
+						28,
+						85,
+						1,
+						1
+					]
+				}
+			}
+		},
+		"-4,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -4
+				},
+				"image": "metaltile.png",
+				"id": "xid_6",
+				"type": "floor"
+			}
+		},
+		"2,8": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-6,9": {
+			"floor": {
+				"spot": {
+					"y": 9,
+					"x": -6
+				},
+				"image": "woodtile.png",
+				"id": "xid_29",
+				"type": "floor"
+			},
+			"objects": {
+				"Wanda": {
+					"name": "Wanda",
+					"icon": [
+						28,
+						85,
+						1,
+						1
+					],
+					"className": "Wanda",
+					"character": 1,
+					"spot": {
+						"y": 9,
+						"x": -6
+					},
+					"id": "Wanda",
+					"team": 1
+				}
+			}
+		},
+		"3,9": {
+			"rwall": {
+				"spot": {
+					"y": 9,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_24",
+				"type": "rwall"
+			}
+		},
+		"3,7": {
+			"rwall": {
+				"spot": {
+					"y": 7,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_22",
+				"type": "rwall"
+			}
+		},
+		"-2,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -2
+				},
+				"image": "metaltile.png",
+				"id": "xid_1",
+				"type": "floor"
+			}
+		},
+		"-1,6": {
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": -1
+				},
+				"image": "glasswall.png",
+				"id": "xid_15",
+				"type": "lwall"
+			}
+		},
+		"-4,10": {
+			"floor": {
+				"spot": {
+					"y": 10,
+					"x": -4
+				},
+				"image": "woodtile.png",
+				"id": "xid_35",
+				"type": "floor"
+			}
+		},
+		"-4,11": {
+			"floor": {
+				"spot": {
+					"y": 11,
+					"x": -4
+				},
+				"image": "woodtile.png",
+				"id": "entrance",
+				"type": "floor",
+				"destination": {
+					"map": "world.txt",
+					"location": "exit"
+				}
+			}
+		},
+		"-5,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -5
+				},
+				"image": "woodtile.png",
+				"id": "xid_42",
+				"type": "floor"
+			},
+			"rwall": {
+				"spot": {
+					"y": 7,
+					"x": -5
+				},
+				"image": "glasswall.png",
+				"id": "xid_43",
+				"type": "rwall"
+			}
+		},
+		"1,6": {
+			"lwall": {
+				"image": "glasswall.png",
+				"interact": "take",
+				"object": "wall",
+				"spot": {
+					"y": 6,
+					"x": 1
+				},
+				"id": "xid_17",
+				"type": "lwall",
+				"snap": 1
+			}
+		},
+		"3,6": {
+			"rwall": {
+				"spot": {
+					"y": 6,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_21",
+				"type": "rwall"
+			},
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": 3
+				},
+				"image": "glasswall.png",
+				"id": "xid_27",
+				"type": "lwall"
+			}
+		},
+		"-7,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -7
+				},
+				"image": "woodtile.png",
+				"id": "xid_45",
+				"type": "floor"
+			}
+		},
+		"0,8": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-3,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -3
+				},
+				"image": "metaltile.png",
+				"id": "xid_4",
+				"type": "floor"
+			},
+			"objects": {
+				"xid_20": {
+					"hotspot": {
+						"y": 0.2,
+						"x": -0.2
+					},
+					"interact": "sit",
+					"object": "chair",
+					"className": "Pikachu",
+					"spot": {
+						"y": 8,
+						"x": -3
+					},
+					"id": "xid_20"
+				}
+			}
+		},
+		"-7,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -7
+				},
+				"image": "woodtile.png",
+				"id": "xid_46",
+				"type": "floor"
+			}
+		},
+		"0,7": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-2,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -2
+				},
+				"image": "metaltile.png",
+				"id": "xid_7",
+				"type": "floor"
+			}
+		},
+		"0,6": {
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": 0
+				},
+				"image": "glasswall.png",
+				"id": "xid_16",
+				"type": "lwall"
+			}
+		},
+		"-4,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -4
+				},
+				"image": "metaltile.png",
+				"id": "xid_2",
+				"type": "floor"
+			},
+			"rwall": {
+				"spot": {
+					"y": 7,
+					"x": -4
+				},
+				"image": "glasswall.png",
+				"id": "xid_39",
+				"type": "rwall"
+			}
+		},
+		"1,7": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-5,8": {
+			"floor": {
+				"spot": {
+					"y": 8,
+					"x": -5
+				},
+				"image": "woodtile.png",
+				"id": "xid_33",
+				"type": "floor"
+			},
+			"lwall": {
+				"spot": {
+					"y": 8,
+					"x": -5
+				},
+				"image": "glasswall.png",
+				"id": "xid_38",
+				"type": "lwall"
+			}
+		},
+		"-4,9": {
+			"floor": {
+				"spot": {
+					"y": 9,
+					"x": -4
+				},
+				"image": "woodtile.png",
+				"id": "xid_34",
+				"type": "floor"
+			}
+		},
+		"-5,10": {
+			"floor": {
+				"spot": {
+					"y": 10,
+					"x": -5
+				},
+				"image": "woodtile.png",
+				"id": "xid_36",
+				"type": "floor"
+			}
+		},
+		"1,8": {
+			"objects": {
+				"xid_19": {
+					"className": "Table",
+					"dimension": "3x2",
+					"spot": {
+						"y": 7,
+						"x": 0
+					},
+					"id": "xid_19",
+					"block": 1
+				}
+			}
+		},
+		"-6,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -6
+				},
+				"image": "woodtile.png",
+				"id": "xid_44",
+				"type": "floor"
+			}
+		},
+		"2,6": {
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": 2
+				},
+				"image": "glasswall.png",
+				"id": "xid_26",
+				"type": "lwall"
+			}
+		},
+		"-5,6": {
+			"rwall": {
+				"spot": {
+					"y": 6,
+					"x": -5
+				},
+				"image": "glasswall.png",
+				"id": "xid_40",
+				"type": "rwall"
+			},
+			"floor": {
+				"spot": {
+					"y": 6,
+					"x": -5
+				},
+				"image": "woodtile.png",
+				"id": "xid_41",
+				"type": "floor"
+			},
+			"lwall": {
+				"spot": {
+					"y": 6,
+					"x": -5
+				},
+				"image": "glasswall.png",
+				"id": "xid_14",
+				"type": "lwall"
+			}
+		},
+		"-3,7": {
+			"floor": {
+				"spot": {
+					"y": 7,
+					"x": -3
+				},
+				"image": "woodtile.png",
+				"id": "xid_0",
+				"type": "floor"
+			},
+			"rwall": {
+				"spot": {
+					"y": 7,
+					"x": -3
+				},
+				"image": "brickwall.png",
+				"id": "xid_10",
+				"type": "rwall"
+			},
+			"lwall": {
+				"spot": {
+					"y": 7,
+					"x": -3
+				},
+				"image": "brickwall.png",
+				"id": "xid_9",
+				"type": "lwall"
+			}
+		},
+		"-6,10": {
+			"floor": {
+				"spot": {
+					"y": 10,
+					"x": -6
+				},
+				"image": "woodtile.png",
+				"id": "xid_37",
+				"type": "floor"
+			}
+		}
+	},
+	"time": 996
+}

@@ -1,0 +1,57 @@
+PARAMETERS and MULTIPLAYER:
+At the start of the game, a javascript function will get called: function notify(id). It will send out the id used to connect for multiplayer.
+On the demo site, notify is defined to alert(id).
+
+Another player who wants to connect to that game will need to pass that id into parameter "peer"
+
+Here are the javascript functions called from the flash:
+notify(id) => passes out the peerID, so that we can use javascript to save it for game lobby or other things.
+gameOver(mywin) => called when the game is finished between two players.
+
+To pass parameters to flash,
+
+    *     use "file.swf?param1=XXX&param2=XXX"
+    *     or use the tag: <Param name="FlashVars" Value="param1=XXX&param2=XXX">.
+
+The second option is better.
+
+Here's the list of parameters:
+
+    * peer: pass peer=id to connect to a player that started a game with that id.
+    * playsolo: (for demo purposes only). pass playsolo=1 to play single player
+    * MAXPLAYTIME: overrides the default time of 60sec of a player to make a move before the skip / remove button appears.
+    * ROOM: by default, it's just "room". It's the room where the two players are. It's also the channel that cirrus connects to.
+    * pic1: URL to the picture of the first player. This replaces the 1st picture placeholder.
+    * playername: Name of the first player.
+    * pic2: This replaces the 2nd picture placeholder. Note that this will get replaced by the profile picture of the second player once he connects, so use this parameter to load a default placeholder image for profile pictures.
+    * picbg: URL to the picture of the background.
+    * stick: URL to the picture of the stick.
+    * debug: pass debug=1 to display the game settings like wallfriction, ballfriction...
+    * skin: Base name for ball pictures. if you set skin=ball, the ball images will be replaced by ball0.jpg, ball1.jpg, ball2.jpg... ball15.jpg
+    * fps: for performance testing. Pass fps=1 to show frames per second.
+
+For a player entering a room, the picbg and skin parameter will get replaced by the settings of the player in that room. However, each player retains their own sticks.
+
+I've setup the demo site so you can pass parameters to the flash from the URL:
+
+
+Try the demo:
+
+Go to:
+http://vincent.hostzi.com/pool/?playername=Scarlett&pic1=http://www.foxnews.com/images/443891/0_41_092808_johansson.jpg&pic2=http://www.twelveby12.org/images/questionmark.jpg&picbg=poolbg.jpg&stick=greentaco.png&skin=ball&fps=1
+
+Write down the ID
+Then go:
+http://vincent.hostzi.com/pool/?peer=c1c9e883abe38186b53d3ddce2202a5b4fb5bb7ca6262ecd52ccb5d8e83b127e
+
+
+Artwork replacement:
+
+For the artists, grab images from:
+http://vincent.hostzi.com/pool/poolbg.jpg
+http://vincent.hostzi.com/pool/greentaco.png
+http://vincent.hostzi.com/pool/ball0.jpg
+http://vincent.hostzi.com/pool/ball1.jpg
+http://vincent.hostzi.com/pool/ball2.jpg
+...
+http://vincent.hostzi.com/pool/ball15.jpg

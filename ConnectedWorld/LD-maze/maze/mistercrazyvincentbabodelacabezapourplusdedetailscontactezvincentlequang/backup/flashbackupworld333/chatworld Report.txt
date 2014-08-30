@@ -1,0 +1,150 @@
+﻿chatworld.swf Movie Report
+---------------------------
+
+Frame #    Frame Bytes    Total Bytes    Scene
+-------    -----------    -----------    -----
+      1             40             40    Intro
+      2             64            104    
+      3              5            109    
+      4              5            114    
+      5             65            179    
+      6              5            184    
+      7             64            248    
+      8              5            253    
+      9              5            258    
+     10              5            263    
+     11              5            268    
+     12              5            273    
+     13              5            278    
+     14              5            283    
+     15              5            288    
+     16              5            293    
+     17              5            298    
+     18             36            334    
+     19           2741           3075    
+     20          38720          41795     (AS 3.0 Classes Export Frame)
+     21              1          41796    
+     22              1          41797    
+     23              1          41798    
+     24              1          41799    
+     25              1          41800    
+     26              1          41801    
+     27              1          41802    
+     28              1          41803    
+     29              1          41804    
+     30              1          41805    
+     31              1          41806    
+     32              1          41807    
+     33              1          41808    
+     34              1          41809    
+     35              1          41810    
+     36              1          41811    
+     37              1          41812    
+     38              1          41813    
+     39              1          41814    
+     40             15          41829    
+     41              8          41837    
+     42             20          41857    
+     43             12          41869    
+     44             13          41882    
+     45             12          41894    
+     46             10          41904    
+     47             18          41922    
+     48              1          41923    
+     49              1          41924    
+     50              1          41925    
+     51              1          41926    
+     52              1          41927    
+     53              1          41928    
+     54              1          41929    
+     55            275          42204    Main
+
+Scene     Shape Bytes    Text Bytes    ActionScript Bytes
+------    -----------    ----------    ------------------
+Intro              27            59                     0
+Main                0             0                     0
+
+Symbol                 Shape Bytes    Text Bytes    ActionScript Bytes
+-------------------    -----------    ----------    ------------------
+Talking                         24             0                     0
+Flashbar                       204             0                     0
+JJJ                             39             0                     0
+MMP                             36             0                     0
+Chatbox                          0           127                     0
+Brick                            0             0                     0
+Wall                            39             0                     0
+SmurfCastle                     56             0                     0
+Castle                           0             0                     0
+Column                         269             0                     0
+Cursor                           0             0                     0
+Arrow                           57             0                     0
+Backworld                       78             0                     0
+Darkness                         0             0                     0
+Map                             25             0                     0
+BG                              42           127                     0
+Shadow                          48             0                     0
+Smurffarmarm                   276             0                     0
+SmurfLegFar                    159             0                     0
+SmurfBody                      104             0                     0
+Leg2                           160             0                     0
+SMH                            643             0                     0
+SmurfHead                        0             0                     0
+Smurfarm                       218             0                     0
+StillSmurf                       0             0                     0
+Smurf                            0             0                     0
+SmurfBMP                         0             0                     0
+Symbol 7                         0             0                     0
+blue                            72             0                     0
+Rotator                          0             0                     0
+Selector                         0             0                     0
+Trunk                          282             0                     0
+GreenBush                      115             0                     0
+Tree                             0             0                     0
+Bush                             0             0                     0
+Symbol 9                        54             0                     0
+Grass                            0             0                     0
+SmurfBodyHandy                 272             0                     0
+SmurfHeadHandy                 198             0                     0
+SmurfBuilderStillG               0             0                     0
+SmurfBuilderG                    0             0                     0
+SmurfBuilder                     0             0                     0
+TallTree                         0             0                     0
+Sprites                          0            50                     0
+3dScene                          0             0                     0
+Foot                            52             0                     0
+Body                           337             0                     0
+Cown                            94             0                     0
+Face                           274             0                     0
+TalkingFacePrincess            344             0                     0
+Princess copy                    0             0                     0
+Princess                       104             0                     0
+Princess2                      105             0                     0
+PrincessMove                     0             0                     0
+Blink                          127             0                     0
+WhiteBulle                      88             0                     0
+bgroup                           0           127                     0
+Bulle                            0             0                     0
+Eye                              0             0                     0
+MisterPlante                     0             0                     0
+MonsieurTree                     0             0                     0
+
+
+Tweened Shapes: 871 bytes
+
+Font Name              Bytes         Characters
+-------------------    ----------    ----------
+Verdana                        19    
+TektonPro-Bold Bold         16409     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ˆ˜–—‘’‚“”„†‡•…‰‹›€™
+Helvetica                     859     LMNadenouv 
+
+Event Sounds: 11KHz Mono 16 kbps MP3
+
+
+Sound name    Bytes         Format
+----------    ----------    ------
+Frog.wav            1106    11KHz Mono 16 kbps MP3
+Bird2.wav           1175    11KHz Mono 16 kbps MP3
+
+
+
+

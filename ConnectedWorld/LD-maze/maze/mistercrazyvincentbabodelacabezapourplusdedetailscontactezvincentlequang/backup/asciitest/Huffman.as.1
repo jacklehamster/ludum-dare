@@ -1,0 +1,368 @@
+﻿package
+{
+	import flash.net.URLVariables;
+	import com.adobe.serialization.json.JSON;
+	import flash.text.TextField;
+	import flash.utils.ByteArray;
+	
+	public class Huffman
+	{
+		const PARENTOFFSET = 0;
+		const COUNTOFFSET = 1;
+		const CODEOFFSET = 2;
+		const LEAFSIZE = 3;
+		const LEFTRIGHTOFFSET = 2;
+		const LEFTOFFSET = LEFTRIGHTOFFSET; 
+		const RIGHTOFFSET = LEFTRIGHTOFFSET+1;
+		const ADDCODEOFFSET = -1;
+		const ADDUNICODEOFFSET = -2;
+		const ADDNUMBERSOFFSET = -3;
+		
+		var master = null;
+		var chartable:Array = null;
+		var countstack:Array = null;
+		var addcode:Array = null;
+		var addunicode:Array = null;
+		var addnumbers:Array = null;
+		
+		function Huffman(mc = null)
+		{
+			master = mc;
+			reset();
+		}
+		
+		function reset()
+		{
+			addcode = [null,0,ADDCODEOFFSET];		//[parent,count,code]
+			addunicode = [null,0,ADDUNICODEOFFSET];	
+			addnumbers = [null,0,ADDNUMBERSOFFSET];
+			chartable = [];
+			countstack = [addcode,addunicode,addnumbers];
+			makeTree(countstack);
+		}
+		
+		static function makeChar(bitstr:String)
+		{
+			var val = 0;
+			for(var i=0;i<bitstr.length;i++)
+			{
+				val <<= 1;
+				val += parseInt(bitstr.charAt(i));
+			}
+			return val;
+		}
+		
+		public function bitdecode(bitstr:String)
+		{
+			var result = [""];
+			for(var i=0;i<bitstr.length;)
+			{
+				var tree = makeTree(countstack);
+				var node:Array = tree;
+				while(node.length>LEAFSIZE)
+				{
+					node = node[LEFTRIGHTOFFSET+parseInt(bitstr.charAt(i))];
+					i++;
+				}
+				var c= node[CODEOFFSET];
+//				trace(c);
+				switch(c)
+				{
+					case ADDCODEOFFSET:
+						c = makeChar(bitstr.substr(i,8));
+						i += 8;
+						addcode[COUNTOFFSET]++;
+						chartable[c]=[null,1,c]; //[parent,count,code]
+						countstack.push(chartable[c]);
+						if(c)
+							result[result.length-1]+= String.fromCharCode(c);
+						break;
+					case ADDUNICODEOFFSET:
+						c = makeChar(bitstr.substr(i,16));
+						i += 16;
+						addunicode[COUNTOFFSET]++;
+						chartable[c]=[null,1,c]; //[parent,count,code]
+						countstack.push(chartable[c]);	
+						if(c)
+							result[result.length-1]+= String.fromCharCode(c);
+						break;
+					case ADDNUMBERSOFFSET:
+						var nums:Array = [];
+						addnumbers[COUNTOFFSET]++;
+						var b = makeChar(bitstr.substr(i,4))+1;	//	read the array length
+						i += 4;
+						var count = makeChar(bitstr.substr(i,b));
+						i += b;
+						if(count)
+						{
+							b = makeChar(bitstr.substr(i,4))+1;	//	read offset
+							i += 4;
+							var offset = makeChar(bitstr.substr(i,b));
+							i += b;
+							b = makeChar(bitstr.substr(i,4))+1;	//	read bitformat
+							i += 4;
+							for(;count>0;count--)
+							{
+								var val = makeChar(bitstr.substr(i,b))+offset;
+								i += b;
+								nums.push(val);
+							}
+							if(result[result.length-1] is String && !result[result.length-1].length)	//	remove if empty
+								result.pop();
+						}
+						result = result.concat(nums);
+						break;
+					default:
+						chartable[c][COUNTOFFSET]++;
+						if(c)
+							result[result.length-1]+= String.fromCharCode(c);
+						break;
+				}
+				if(!c && i<bitstr.length)
+					result.push("");
+				//				display();
+				//trace(c + "," + (c>0?String.fromCharCode(c):"") + "," + i + "->" + bitstr.length +"|"+ result + "<<" + bitstr.substr(i));
+			}
+			return result;
+		}
+		
+		function display()
+		{
+			if(master)
+			{
+				master.graphics.clear();
+				displaytree(master,makeTree(countstack));
+			}
+			else
+				"No clip for display";
+		}
+		
+		function insertSpecialCode(specialcode,bitcode:Array)
+		{
+			makeTree(countstack);
+			bitcode.push(getBitCodeNode(specialcode));
+			specialcode[COUNTOFFSET]++;
+		}
+		
+		function insertCode(c:int,bitcode:Array)
+		{
+			if(!chartable[c])
+			{
+				insertSpecialCode((c>>8)?addunicode:addcode,bitcode);
+				chartable[c]=[null,1,c]; //[parent,count,code]
+				countstack.push(chartable[c]);	
+				bitcode.push(getBitCodeChar(c));
+			}
+			else
+			{
+				makeTree(countstack);
+				chartable[c][COUNTOFFSET]++;
+				bitcode.push(getBitCodeNode(chartable[c]));
+			}
+		}
+		
+		function getBitCount(num:int)
+		{
+			for(var b=1;num>>b;b++)
+				;
+			return b;
+		}
+		
+		function insertSingleNumber(num:int,bitcode:Array)
+		{
+			// format:	[bitcount-1:4bit][number]
+			var b = getBitCount(num);
+			bitcode.push(getBitCodeChar(b-1,4));
+			bitcode.push(getBitCodeChar(num,b));
+		}
+		
+		public function bitencodeNumbers(nums:Array):String
+		{
+			var bitcode:Array = [];
+			insertSpecialCode(addnumbers,bitcode);
+			
+			//	the format for inserting an array of numbers:
+			//	[addnumberscode]["arraylength"]["offset"][bitcount-1:4bit][array...]
+			insertSingleNumber(nums.length,bitcode);
+			
+			if(nums.length)
+			{
+				var minnum:int=nums[0],maxnum:int=nums[0];
+				for(var i=1;i<nums.length;i++)
+				{
+					minnum = Math.min(minnum,nums[i]);
+					maxnum = Math.max(maxnum,nums[i]);
+				}
+				insertSingleNumber(minnum,bitcode);	//	insert offset
+				var b = getBitCount(maxnum-minnum);	//	get bitformat
+				bitcode.push(getBitCodeChar(b-1,4));
+				for(i=0;i<nums.length;i++)
+				{
+					bitcode.push(getBitCodeChar(nums[i]-minnum,b));
+				}
+			}
+			return bitcode.join("");
+		}
+		
+		public function bitencode(str:String,seperate:Boolean=true):String
+		{
+			var bitcode:Array = [];
+			
+			if(str)
+			{
+				for(var i=0;i<str.length;i++)
+				{
+					insertCode(str.charCodeAt(i),bitcode);
+				}
+			}
+			if(seperate)
+				insertCode(0,bitcode);
+			return bitcode.join("");
+		}
+		
+		function getBitCodeChar(c:int,size:int=0)
+		{
+			if(!size)
+				size = (c>>8)?16:8;
+			var str = "";
+			for(var i=0;i<size;i++)
+			{
+				str = c%2+str;
+				c >>= 1;
+			}
+			return str;
+		}
+		
+		function getBitCodeNode(node:Array):String
+		{
+			return node[PARENTOFFSET]?arguments.callee(node[PARENTOFFSET].parent)+node[PARENTOFFSET].code:"";
+		}
+		
+		function showChar(c:int):String
+		{
+			return c==ADDCODEOFFSET?"CODE":c==ADDUNICODEOFFSET?"UNICODE":c==ADDNUMBERSOFFSET?"NUMBERS":String.fromCharCode(c);
+		}
+		
+		function displaytree(mc,node:Array,xmin=0,xmax=0,ylevel=0)
+		{
+			if(!xmax)
+				xmax = mc.stage.stageWidth;
+			var tf = new TextField();
+			mc.addChild(tf);
+			tf.x = (xmin+xmax)/2;
+			tf.y = ylevel;
+			tf.text = node[COUNTOFFSET] + (node.length<=LEAFSIZE?":"+showChar(node[CODEOFFSET]):"");
+			if(node.length>LEAFSIZE)
+			{
+				displaytree(mc,node[LEFTOFFSET],xmin,tf.x,tf.y+30);
+				displaytree(mc,node[RIGHTOFFSET],tf.x,xmax,tf.y+30);
+				mc.graphics.lineStyle(1);
+				mc.graphics.moveTo((xmin+tf.x)/2,tf.y+20);
+				mc.graphics.lineTo(tf.x,tf.y);
+				mc.graphics.lineTo((tf.x+xmax)/2,tf.y+20);
+			}
+		}
+		
+		function countcmp(a,b)
+		{
+			return b[COUNTOFFSET]!=a[COUNTOFFSET]?b[COUNTOFFSET]-a[COUNTOFFSET]:b.length!=a.length?b.length-a.length:b[CODEOFFSET]-a[CODEOFFSET];
+		}
+		
+		function makeTree(countstack:Array)
+		{
+			var clonestack = [].concat(countstack);
+			while(clonestack.length>1)
+			{
+				clonestack.sort(countcmp);
+				var n1 = clonestack.pop();
+				var n2 = clonestack.pop();
+				var merge = [null,n2[COUNTOFFSET]+n1[COUNTOFFSET], n2, n1];
+				n2[PARENTOFFSET] = {code:0,parent:merge};
+				n1[PARENTOFFSET] = {code:1,parent:merge};
+				clonestack.push(merge);
+			}
+			var rootnode = clonestack[0];
+			rootnode[PARENTOFFSET] = null;
+			return rootnode;
+		}
+		
+		static var _chartable:Array = null;
+		static function chartable():Array
+		{
+			if(!_chartable)
+			{
+				_chartable = [ "_" ];
+				var vars:URLVariables = new URLVariables();
+				for(var i=0;i<5000;i++)
+				{
+					var c = String.fromCharCode(i);
+					vars.c = c;
+					if("c="+c == vars.toString())
+					{
+						_chartable.push(c);
+					}
+				}
+				_chartable.push( "." );
+			}
+			return _chartable;
+		}
+		
+		static function antitable():Array
+		{
+			var atable = [];
+			var stable = chartable().join("");
+			for(var i=0;i<stable.length;i++)
+				atable[stable.charCodeAt(i)] = i;
+			return atable;
+		}
+		
+		static public function transcodechar(bitcode:String):String
+		{
+			var ctable = chartable();
+			var codes = [];
+			if(bitcode.length)
+			{
+				var bitcodearray:Array = bitcode.split("");
+				for(var i=0;i<bitcodearray.length;)
+				{
+					var val = 0;
+					for(var c=1;c<ctable.length;c<<=1)
+					{
+						val <<= 1;
+						val += i<bitcodearray.length?parseInt(bitcodearray[i]):0;
+						i++;
+					}
+					codes.push(ctable[val]);
+				}
+				codes.unshift(ctable[i-bitcodearray.length]);	//	store the number of junk bits at the beginning
+			}
+			return codes.join("");
+		}
+
+		static public function transcodebit(charcode:String):String
+		{
+			var codearray:Array = [];
+			if(charcode.length)
+			{
+				var ctable = chartable();
+				var atable = antitable();
+				var junk = atable[charcode.charCodeAt(0)];
+				for(var i=1;i<charcode.length;i++)
+				{
+					var val = atable[charcode.charCodeAt(i)];
+					var bitgroup = "";
+					for(var c=1;c<ctable.length;c<<=1)
+					{
+						bitgroup = val%2 + bitgroup;
+						val >>= 1;
+					}
+					if(i==charcode.length-1)
+						bitgroup = bitgroup.substr(0,bitgroup.length-junk);
+					codearray.push(bitgroup);
+				}			
+			}
+			return codearray.join("");
+		}
+	}
+	
+}

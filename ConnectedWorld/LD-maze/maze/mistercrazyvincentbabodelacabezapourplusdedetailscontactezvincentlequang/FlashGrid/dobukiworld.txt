@@ -1,0 +1,421 @@
+{
+	"map": {
+		"1,1": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_27",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 1,
+					"x": 1
+				}
+			}
+		},
+		"4,1": {
+			"rwall": {
+				"type": "rwall",
+				"id": "xid_31",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 1,
+					"x": 4
+				}
+			}
+		},
+		"4,4": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_48",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 4,
+					"x": 4
+				}
+			},
+			"rwall": {
+				"type": "rwall",
+				"id": "xid_49",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 4,
+					"x": 4
+				}
+			}
+		},
+		"2,4": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_46",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 4,
+					"x": 2
+				}
+			}
+		},
+		"3,1": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_29",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 1,
+					"x": 3
+				}
+			}
+		},
+		"2,3": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_40",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 3,
+					"x": 2
+				}
+			},
+			"objects": {
+				"slime": {
+					"spot": {
+						"y": 2.6810000000000005,
+						"x": 2.375999999999999
+					},
+					"id": "slime",
+					"file": "dobukiroom.swf",
+					"className": "Slime",
+					"follow": "Dok"
+				}
+			}
+		},
+		"0,3": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_38",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 3,
+					"x": 0
+				}
+			}
+		},
+		"1,2": {
+			"floor": {
+				"image": "woodtile.png",
+				"id": "xid_3",
+				"spot": {
+					"y": 2,
+					"x": 1
+				},
+				"type": "floor"
+			}
+		},
+		"4,3": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_42",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 3,
+					"x": 4
+				}
+			},
+			"rwall": {
+				"type": "rwall",
+				"id": "xid_43",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 3,
+					"x": 4
+				}
+			}
+		},
+		"0,1": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_26",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 1,
+					"x": 0
+				}
+			}
+		},
+		"2,1": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_28",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 1,
+					"x": 2
+				}
+			}
+		},
+		"-1,2": {
+			"objects": {
+				"instance215": {
+					"rotation": 0,
+					"spot": {
+						"y": 1.6152500000000016,
+						"x": -0.6722500000000011
+					},
+					"frame": 1,
+					"guided": 1,
+					"id": "instance215",
+					"file": "dobukiroom.swf",
+					"className": "Switch"
+				}
+			},
+			"floor": {
+				"image": "woodtile.png",
+				"id": "xid_1",
+				"spot": {
+					"y": 2,
+					"x": -1
+				},
+				"type": "floor"
+			}
+		},
+		"1,0": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_17",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 0,
+					"x": 1
+				}
+			},
+			"lwall": {
+				"type": "lwall",
+				"id": "xid_18",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 1
+				}
+			}
+		},
+		"3,0": {
+			"lwall": {
+				"type": "lwall",
+				"id": "xid_22",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 3
+				}
+			}
+		},
+		"1,4": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_45",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 4,
+					"x": 1
+				}
+			}
+		},
+		"2,2": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_34",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 2,
+					"x": 2
+				}
+			},
+			"objects": {
+				"Dok": {
+					"team": 1,
+					"name": "Dok",
+					"spot": {
+						"y": 1.68,
+						"x": 1.68
+					},
+					"icon": [
+						28,
+						65,
+						1,
+						1
+					],
+					"id": "Dok",
+					"direction": 28,
+					"character": 1,
+					"speed": 0.07,
+					"className": "Dok"
+				}
+			}
+		},
+		"3,2": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_35",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 2,
+					"x": 3
+				}
+			}
+		},
+		"4,0": {
+			"rwall": {
+				"type": "rwall",
+				"id": "xid_25",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 4
+				}
+			},
+			"lwall": {
+				"type": "lwall",
+				"id": "xid_24",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 4
+				}
+			}
+		},
+		"0,0": {
+			"lwall": {
+				"type": "lwall",
+				"id": "xid_16",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 0
+				}
+			}
+		},
+		"3,3": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_41",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 3,
+					"x": 3
+				}
+			}
+		},
+		"0,4": {
+			"objects": {
+				"instance217": {
+					"rotation": 0,
+					"spot": {
+						"y": 4.169250000000001,
+						"x": -0.20824999999999982
+					},
+					"frame": 1,
+					"guided": 1,
+					"id": "instance217",
+					"file": "dobukiroom.swf",
+					"className": "Flower"
+				}
+			}
+		},
+		"1,3": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_39",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 3,
+					"x": 1
+				}
+			}
+		},
+		"2,0": {
+			"lwall": {
+				"type": "lwall",
+				"id": "xid_20",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 0,
+					"x": 2
+				}
+			}
+		},
+		"4,2": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_36",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 2,
+					"x": 4
+				}
+			},
+			"rwall": {
+				"type": "rwall",
+				"id": "xid_37",
+				"image": "glasswall.png",
+				"spot": {
+					"y": 2,
+					"x": 4
+				}
+			}
+		},
+		"3,4": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_47",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 4,
+					"x": 3
+				}
+			}
+		},
+		"-1,3": {
+			"objects": {
+				"instance270": {
+					"rotation": 0,
+					"spot": {
+						"y": 2.516250000000001,
+						"x": -0.7312500000000008
+					},
+					"frame": 1,
+					"guided": 1,
+					"id": "instance270",
+					"file": "dobukiroom.swf",
+					"className": "Entrance"
+				}
+			},
+			"floor": {
+				"image": "woodtile.png",
+				"id": "xid_2",
+				"spot": {
+					"y": 3,
+					"x": -1
+				},
+				"type": "floor"
+			}
+		},
+		"0,2": {
+			"floor": {
+				"type": "floor",
+				"id": "xid_32",
+				"image": "metaltile.png",
+				"spot": {
+					"y": 2,
+					"x": 0
+				}
+			}
+		}
+	},
+	"background": {
+		"shift": {
+			"y": -289.59999999999997,
+			"x": -79.29999999999998,
+			"length": 300.2609698245844
+		},
+		"image": "dobukiroom.swf"
+	},
+	"time": 6217
+}
