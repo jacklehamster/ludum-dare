@@ -12,7 +12,7 @@ package
 	
 	public class LD extends Sprite
 	{
-		static private const LD_NUMBER:Number = 30;
+		static private const LD_NUMBER:Number = 31;
 		
 		static private const MAXDOWNLOADS:int = 15;
 		static private const PAGING:int = 24;
